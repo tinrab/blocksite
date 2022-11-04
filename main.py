@@ -41,7 +41,7 @@ if __name__ == '__main__':
     if not args.disable:
         entries = [HostsEntry(entry_type='comment', comment=BEGIN_COMMENT)]
         for site in sites:
-            entries.append(HostsEntry(entry_type='ipv4', address='0.0.0.0', names=[site]))
+            entries.append(HostsEntry(entry_type='ipv4', address='127.0.0.1', names=[site]))
         entries.append(HostsEntry(entry_type='comment', comment=END_COMMENT))
         hosts.add(entries)
 

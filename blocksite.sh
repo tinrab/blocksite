@@ -5,14 +5,24 @@ current_path="$(realpath $0)"
 current_dir="$(dirname $current_path)"
 
 function enable() {
-	./venv/bin/python ./main.py /etc/hosts ./sites.txt
+	"$current_dir/venv/bin/python" "$current_dir/main.py" /etc/hosts ./sites.txt
 }
 
 function disable() {
-	./venv/bin/python ./main.py /etc/hosts ./sites.txt --disable
+	"$current_dir/venv/bin/python" "$current_dir/main.py" /etc/hosts ./sites.txt --disable
 }
 
-if [[ $1 =~ ^(enable|disable)$ ]]; then
+function help() {
+	echo "Usage: $(basename "$0") [OPTIONS]
+
+Commands:
+  enable   Enable block
+  disable  Disable block
+  help     Show help
+"
+}
+
+if [[ $1 =~ ^(enable|disable|help)$ ]]; then
 	"$@"
 else
 	help
